@@ -1,5 +1,6 @@
 name: 'Hashnode Blog'
 description: 'Pulls Your Latest Blog Post From Hasnode'
+
 inputs:
   TYPE:
     description: "Set it to GIST if you are using this for a pinned gists"
@@ -21,6 +22,10 @@ inputs:
     description: "No of Latest Post To Show"
     default: "6"
     required: false
+
+branding:
+  icon: 'book-open'
+  color: 'blue'
 
 runs:
   using: 'node12'
