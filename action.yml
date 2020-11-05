@@ -1,0 +1,27 @@
+name: 'Hashnode Blog'
+description: 'Pulls Your Latest Blog Post From Hasnode'
+inputs:
+  TYPE:
+    description: "Set it to GIST if you are using this for a pinned gists"
+    default: "REPOSITORY"
+    required: false
+  FILE:
+    description: "Provide GIST ID if Type is Set To Gists or provide a valid file location"
+    default: "README.md"
+    required: false
+  USERNAME:
+    description: "Your Hashnode Username"
+    default: ""
+    required: true
+  STYLE:
+    description: "Provide Which Style You Need"
+    default: 'list'
+    required: false
+  COUNT:
+    description: "No of Latest Post To Show"
+    default: "6"
+    required: false
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
