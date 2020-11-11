@@ -35,7 +35,7 @@ async function query_api( username = false, pageno = 1 ) {
 	return ApiResponse.data.user.publication.posts;
 }
 
-module.exports = async function( username, limit = 6 ) {
+module.exports = async function( username, limit = 6, BLOG_URL = false ) {
 	let loop_status = true,
 		posts       = [],
 		i           = 0;
@@ -49,7 +49,7 @@ module.exports = async function( username, limit = 6 ) {
 				if( posts.length >= limit ) {
 					loop_status = false;
 				} else {
-					post.url = helpers.post_link( post, username );
+					post.url = helpers.post_link( post, username, BLOG_URL );
 					posts.push( post );
 				}
 			} );

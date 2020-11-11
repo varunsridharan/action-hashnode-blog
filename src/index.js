@@ -13,6 +13,7 @@ async function run() {
 		const USERNAME = core.getInput( 'USERNAME' );
 		const STYLE    = core.getInput( 'STYLE' );
 		const COUNT    = core.getInput( 'COUNT' );
+		const BLOG_URL = core.getInput( 'BLOG_URL' );
 
 		core.startGroup( 'Parsed Config' );
 		core.info( `Type                     = ${TYPE}` );

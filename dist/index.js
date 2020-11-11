@@ -3112,9 +3112,9 @@ function imgtag( src, link, title, align, width ) {
 module.exports = {
 	a: atag,
 	img: imgtag,
-	post_link: function( post, username ) {
-		if( typeof process.env.BLOG_URL !== 'undefined' && process.env.BLOG_URL !== '' ) {
-			return `${process.env.BLOG_URL}/${post.slug}`;
+	post_link: function( post, username, BLOG_URL = false ) {
+		if( false !== BLOG_URL ) {
+			return `${BLOG_URL}/${post.slug}`;
 		}
 		return `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
 	},
@@ -3155,6 +3155,7 @@ async function run() {
 		const USERNAME = core.getInput( 'USERNAME' );
 		const STYLE    = core.getInput( 'STYLE' );
 		const COUNT    = core.getInput( 'COUNT' );
+		const BLOG_URL = core.getInput( 'BLOG_URL' );
 
 		core.startGroup( 'Parsed Config' );
 		core.info( `Type                     = ${TYPE}` );
@@ -3261,7 +3262,7 @@ async function query_api( username = false, pageno = 1 ) {
 	return ApiResponse.data.user.publication.posts;
 }
 
-module.exports = async function( username, limit = 6 ) {
+module.exports = async function( username, limit = 6, BLOG_URL = false ) {
 	let loop_status = true,
 		posts       = [],
 		i           = 0;
@@ -3275,7 +3276,7 @@ module.exports = async function( username, limit = 6 ) {
 				if( posts.length >= limit ) {
 					loop_status = false;
 				} else {
-					post.url = helpers.post_link( post, username );
+					post.url = helpers.post_link( post, username, BLOG_URL );
 					posts.push( post );
 				}
 			} );

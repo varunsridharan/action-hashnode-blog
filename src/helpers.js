@@ -12,9 +12,9 @@ function imgtag( src, link, title, align, width ) {
 module.exports = {
 	a: atag,
 	img: imgtag,
-	post_link: function( post, username ) {
-		if( typeof process.env.BLOG_URL !== 'undefined' && process.env.BLOG_URL !== '' ) {
-			return `${process.env.BLOG_URL}/${post.slug}`;
+	post_link: function( post, username, BLOG_URL = false ) {
+		if( false !== BLOG_URL ) {
+			return `${BLOG_URL}/${post.slug}`;
 		}
 		return `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
 	},
