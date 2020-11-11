@@ -3113,6 +3113,9 @@ module.exports = {
 	a: atag,
 	img: imgtag,
 	post_link: function( post, username ) {
+		if( typeof process.env.BLOG_URL !== 'undefined' && process.env.BLOG_URL !== '' ) {
+			return `${process.env.BLOG_URL}/${post.slug}`;
+		}
 		return `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
 	},
 	image_size: function( user_value, _default, small, large ) {
