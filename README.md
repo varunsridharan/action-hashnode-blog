@@ -13,6 +13,7 @@
 | `TYPE` | Set this to `GIST` if you want to display latest posts in a pinned gists | `REPOSITORY` |
 | `FILE` | Provide file location or provide **GIST ID** if `TYPE` set to `GIST` | `README.md` |
 | `USERNAME` | Your Hashnode Username | - |
+| `BLOG_URL` | Your blog url. you can leave it empty to auto generate. but if you are facing any issue with auto generated link. make sure to provide your blog url here. | - |
 | `STYLE` | Options :  `list`, `list-ordered`, `blog`, `blog-right`, `blog-left`, `blog-alternate`, `blog-grid` | `list` |
 | `COUNT` | No of latest posts to display | `6` |
 
