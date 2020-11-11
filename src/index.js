@@ -24,7 +24,7 @@ async function run() {
 		core.endGroup();
 
 
-		const results = await query( USERNAME.toLowerCase(), COUNT );
+		const results = await query( USERNAME.toLowerCase(), COUNT, BLOG_URL );
 		let output    = '';
 
 		core.startGroup( 'Latest Posts' );
