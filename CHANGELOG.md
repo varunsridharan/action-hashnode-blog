@@ -21,5 +21,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 -->
 
+## 1.1 - 11/11/2020
+## Added
+* New `BLOG_URL` input.
+> this input value fixes the issue where some user's blog post url was not generated properly
+
 ## 1.0 - 05/11/2020
 ### First Release
