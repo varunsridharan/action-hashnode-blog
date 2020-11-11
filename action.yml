@@ -10,6 +10,7 @@ inputs:
     description: "Provide your custom blog url. or leave it empty to auto generate"
     default: ""
     required: false
+
   FILE:
     description: "Provide GIST ID if Type is Set To Gists or provide a valid file location"
     default: "README.md"
