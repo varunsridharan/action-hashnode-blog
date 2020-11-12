@@ -13,10 +13,7 @@ module.exports = {
 	a: atag,
 	img: imgtag,
 	post_link: function( post, username, BLOG_URL = false ) {
-		if( false !== BLOG_URL ) {
-			return `${BLOG_URL}/${post.slug}`;
-		}
-		return `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
+		return ( '' !== BLOG_URL ) ? `${BLOG_URL}/${post.slug}` : `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
 	},
 	image_size: function( user_value, _default, small, large ) {
 		if( 'small' === user_value ) {
@@ -33,3 +30,4 @@ module.exports = {
 		return user_value;
 	}
 };
+
