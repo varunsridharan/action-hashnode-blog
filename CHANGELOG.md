@@ -21,6 +21,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 -->
 
+## 1.1.1 - 12/11/2020
+## Fixed
+* System Generated URL Not generating when `BLOG_URL` is empty.
+
 ## 1.1 - 11/11/2020
 ## Added
 * New `BLOG_URL` input.
