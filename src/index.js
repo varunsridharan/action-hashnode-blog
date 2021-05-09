@@ -27,7 +27,7 @@ async function run() {
 		const results = await query( USERNAME.toLowerCase(), COUNT, BLOG_URL );
 		let output    = '';
 
-		core.startGroup( 'Latest Posts data' );
+		core.startGroup( 'Latest Posts' );
 		core.info( JSON.stringify( results, null, 2 ) );
 		core.endGroup();
 		core.info( ' ' );
