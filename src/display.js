@@ -7,10 +7,7 @@ function blog_table( posts, style ) {
 	let html = '<table><tr>';
 
 	posts.forEach( ( post, index ) => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		if( 0 !== index && ( index % column ) === 0 ) {
 			html += '</tr><tr>';
@@ -18,6 +15,7 @@ function blog_table( posts, style ) {
 
 		html += `<td>${helpers.img( coverImage, url, title, '', '' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+${dateAdded} ${dateUpdated}
 <br/> ${brief}</td>`;
 	} );
 
