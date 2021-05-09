@@ -28,6 +28,11 @@ module.exports = {
 			return _default;
 		}
 		return user_value;
+	},
+	parseDate(date){
+		const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+		const parsedData = new Date(date);
+		return `${parsedData.getDate()} ${months[parsedData.getMonth()]} ${parsedData.getFullYear()}`
 	}
 };
 
