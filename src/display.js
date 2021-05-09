@@ -56,8 +56,7 @@ async function blog( posts, STYLE ) {
 	}
 
 	posts.forEach( post => {
-		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post,
-			;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		switch( STYLE ) {
 			case 'blog':
@@ -72,6 +71,7 @@ ${helpers.img( coverImage, url, title, '', '400px' )}
 				markdown.push( `<p align="left">
 ${helpers.img( coverImage, url, title, align, '250px' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+<div>Created: ${dateAdded}</div><div>Last Updated: ${dateUpdated}</div>
 <br/> ${brief} </p> <br/> <br/>` );
 				if( isalternate ) {
 					STYLE = ( 'blog-left' === STYLE ) ? 'blog-right' : 'blog-left';

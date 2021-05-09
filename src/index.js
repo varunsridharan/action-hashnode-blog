@@ -49,7 +49,7 @@ async function run() {
 			} );
 		} else {
 			const file_path    = `${process.env.GITHUB_WORKSPACE}/${FILE}`;
-			const file_content = await fs.readFileSync( file_path );
+			const file_content = fs.readFileSync( file_path );
 
 			if( STYLE.toLowerCase().startsWith( 'list' ) ) {
 				output = await render.list( results, STYLE );
@@ -61,7 +61,7 @@ async function run() {
 			const regex  = /^(<!--(?:\s|)HASHNODE_BLOG:(?:START|start)(?:\s|)-->)(?:\n|)([\s\S]*?)(?:\n|)(<!--(?:\s|)HASHNODE_BLOG:(?:END|end)(?:\s|)-->)$/gm;
 			const result = file_content.toString().replace( regex, `$1\n${output}\n$3` );
 
-			await fs.writeFileSync( file_path, result );
+			fs.writeFileSync( file_path, result );
 
 			await commitFile().catch( err => {
 				core.error( err );
