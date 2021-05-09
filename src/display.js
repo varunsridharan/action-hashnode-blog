@@ -56,15 +56,14 @@ async function blog( posts, STYLE ) {
 	}
 
 	posts.forEach( post => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post,
+			;
 
 		switch( STYLE ) {
 			case 'blog':
 				markdown.push( `<h3>${helpers.a( url, title, title )}</h3>
 ${helpers.img( coverImage, url, title, '', '400px' )}
+<div>Created: ${dateAdded}</div><div>Last Updated: ${dateUpdated}</div>
 <p>${brief}</p>` );
 				break;
 			case 'blog-left':

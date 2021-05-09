@@ -16,6 +16,8 @@ async function query_api( username = false, pageno = 1 ) {
         cuid
         brief
         coverImage
+		dateUpdated
+        dateAdded
       }
     }
   }
