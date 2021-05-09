@@ -15,7 +15,7 @@ function blog_table( posts, style ) {
 
 		html += `<td>${helpers.img( coverImage, url, title, '', '' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
-${parseDate.parseDate(dateAdded)} ${parseDate.parseDate(dateUpdated)}
+${helpers.parseDate(dateAdded)} ${helpers.parseDate(dateUpdated)}
 <br/> ${brief}</td>`;
 	} );
 
