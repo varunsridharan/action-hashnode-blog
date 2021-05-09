@@ -3018,7 +3018,7 @@ function blog_table( posts, style ) {
 
 		html += `<td>${helpers.img( coverImage, url, title, '', '' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
-${dateAdded} ${dateUpdated}
+${parseDate.parseDate(dateAdded)} ${parseDate.parseDate(dateUpdated)}
 <br/> ${brief}</td>`;
 	} );
 
@@ -3063,7 +3063,7 @@ async function blog( posts, STYLE ) {
 			case 'blog':
 				markdown.push( `<h3>${helpers.a( url, title, title )}</h3>
 ${helpers.img( coverImage, url, title, '', '400px' )}
-<div>Created: ${dateAdded}</div><div>Last Updated: ${dateUpdated}</div>
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <p>${brief}</p>` );
 				break;
 			case 'blog-left':
@@ -3072,7 +3072,7 @@ ${helpers.img( coverImage, url, title, '', '400px' )}
 				markdown.push( `<p align="left">
 ${helpers.img( coverImage, url, title, align, '250px' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
-<div>Created: ${dateAdded}</div><div>Last Updated: ${dateUpdated}</div>
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <br/> ${brief} </p> <br/> <br/>` );
 				if( isalternate ) {
 					STYLE = ( 'blog-left' === STYLE ) ? 'blog-right' : 'blog-left';
@@ -3125,6 +3125,11 @@ module.exports = {
 			return _default;
 		}
 		return user_value;
+	},
+	parseDate(date){
+		const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+		const parsedData = new Date(date);
+		return `${parsedData.getDate()} ${months[parsedData.getMonth()]} ${parsedData.getFullYear()}`
 	}
 };
 
@@ -3164,7 +3169,7 @@ async function run() {
 		const results = await query( USERNAME.toLowerCase(), COUNT, BLOG_URL );
 		let output    = '';
 
-		core.startGroup( 'Latest Posts data' );
+		core.startGroup( 'Latest Posts' );
 		core.info( JSON.stringify( results, null, 2 ) );
 		core.endGroup();
 		core.info( ' ' );
