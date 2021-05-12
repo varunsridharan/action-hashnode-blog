@@ -3010,10 +3010,7 @@ function blog_table( posts, style ) {
 	let html = '<table><tr>';
 
 	posts.forEach( ( post, index ) => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		if( 0 !== index && ( index % column ) === 0 ) {
 			html += '</tr><tr>';
@@ -3021,6 +3018,7 @@ function blog_table( posts, style ) {
 
 		html += `<td>${helpers.img( coverImage, url, title, '', '' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <br/> ${brief}</td>`;
 	} );
 
@@ -3059,15 +3057,13 @@ async function blog( posts, STYLE ) {
 	}
 
 	posts.forEach( post => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		switch( STYLE ) {
 			case 'blog':
 				markdown.push( `<h3>${helpers.a( url, title, title )}</h3>
 ${helpers.img( coverImage, url, title, '', '400px' )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <p>${brief}</p>` );
 				break;
 			case 'blog-left':
@@ -3076,6 +3072,7 @@ ${helpers.img( coverImage, url, title, '', '400px' )}
 				markdown.push( `<p align="left">
 ${helpers.img( coverImage, url, title, align, '250px' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <br/> ${brief} </p> <br/> <br/>` );
 				if( isalternate ) {
 					STYLE = ( 'blog-left' === STYLE ) ? 'blog-right' : 'blog-left';
@@ -3128,6 +3125,11 @@ module.exports = {
 			return _default;
 		}
 		return user_value;
+	},
+	parseDate(date){
+		const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+		const parsedData = new Date(date);
+		return `${parsedData.getDate()} ${months[parsedData.getMonth()]} ${parsedData.getFullYear()}`
 	}
 };
 
@@ -3189,7 +3191,7 @@ async function run() {
 			} );
 		} else {
 			const file_path    = `${process.env.GITHUB_WORKSPACE}/${FILE}`;
-			const file_content = await fs.readFileSync( file_path );
+			const file_content = fs.readFileSync( file_path );
 
 			if( STYLE.toLowerCase().startsWith( 'list' ) ) {
 				output = await render.list( results, STYLE );
@@ -3201,7 +3203,7 @@ async function run() {
 			const regex  = /^(<!--(?:\s|)HASHNODE_BLOG:(?:START|start)(?:\s|)-->)(?:\n|)([\s\S]*?)(?:\n|)(<!--(?:\s|)HASHNODE_BLOG:(?:END|end)(?:\s|)-->)$/gm;
 			const result = file_content.toString().replace( regex, `$1\n${output}\n$3` );
 
-			await fs.writeFileSync( file_path, result );
+			fs.writeFileSync( file_path, result );
 
 			await commitFile().catch( err => {
 				core.error( err );
@@ -3241,6 +3243,8 @@ async function query_api( username = false, pageno = 1 ) {
         cuid
         brief
         coverImage
+		dateUpdated
+        dateAdded
       }
     }
   }

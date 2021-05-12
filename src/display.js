@@ -7,10 +7,7 @@ function blog_table( posts, style ) {
 	let html = '<table><tr>';
 
 	posts.forEach( ( post, index ) => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		if( 0 !== index && ( index % column ) === 0 ) {
 			html += '</tr><tr>';
@@ -18,6 +15,7 @@ function blog_table( posts, style ) {
 
 		html += `<td>${helpers.img( coverImage, url, title, '', '' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <br/> ${brief}</td>`;
 	} );
 
@@ -56,15 +54,13 @@ async function blog( posts, STYLE ) {
 	}
 
 	posts.forEach( post => {
-		let url        = post.url,
-			title      = post.title,
-			brief      = post.brief,
-			coverImage = post.coverImage;
+		const {url, title, brief, coverImage, dateUpdated, dateAdded} = post;
 
 		switch( STYLE ) {
 			case 'blog':
 				markdown.push( `<h3>${helpers.a( url, title, title )}</h3>
 ${helpers.img( coverImage, url, title, '', '400px' )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <p>${brief}</p>` );
 				break;
 			case 'blog-left':
@@ -73,6 +69,7 @@ ${helpers.img( coverImage, url, title, '', '400px' )}
 				markdown.push( `<p align="left">
 ${helpers.img( coverImage, url, title, align, '250px' )}
 ${helpers.a( url, title, `<strong>${title}</strong>` )}
+<div><strong>${helpers.parseDate(dateAdded)}</strong> | <strong>${helpers.parseDate(dateUpdated)}</strong></div>
 <br/> ${brief} </p> <br/> <br/>` );
 				if( isalternate ) {
 					STYLE = ( 'blog-left' === STYLE ) ? 'blog-right' : 'blog-left';

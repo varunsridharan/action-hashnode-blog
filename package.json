@@ -11,8 +11,8 @@
     "url": "git+https://github.com/varunsridharan/action-hashnode-blog.git"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.24.1",
     "@actions/core": "^1.2.5",
+    "@vercel/ncc": "^0.24.1",
     "gist-box": "^0.3.1"
   },
   "author": "Varun Sridharan <varunsridharan23@gmail.com> (https://varunsridharan.in)",
