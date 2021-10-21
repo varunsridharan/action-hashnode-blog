@@ -3021,7 +3021,9 @@ ${helpers.a(url, title, `<strong>${title}</strong>`)}
 <div><strong>${helpers.parseDate(dateAdded)}</strong>${
 			dateUpdated === null
 				? ""
-				: ` | <strong>${helpers.parseDate(dateUpdated)}</strong>`
+				: ` | <strong>Updated: ${helpers.parseDate(
+						dateUpdated
+				  )}</strong>`
 		}</div>
 <br/> ${brief}</td>`;
 	});
@@ -3069,7 +3071,7 @@ ${helpers.img(coverImage, url, title, "", "400px")}
 <div><strong>${helpers.parseDate(dateAdded)}</strong>${
 					dateUpdated === null
 						? ""
-						: ` | <strong>${helpers.parseDate(
+						: ` | <strong>Updated: ${helpers.parseDate(
 								dateUpdated
 						  )}</strong>`
 				}</div>
@@ -3084,7 +3086,7 @@ ${helpers.a(url, title, `<strong>${title}</strong>`)}
 <div><strong>${helpers.parseDate(dateAdded)}</strong>${
 					dateUpdated === null
 						? ""
-						: ` | <strong>${helpers.parseDate(
+						: ` | <strong>Updated: ${helpers.parseDate(
 								dateUpdated
 						  )}</strong>`
 				}</div>
