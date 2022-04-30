@@ -52,6 +52,7 @@ jobs:
         uses: "varunsridharan/action-hashnode-blog@main"
         with:
           USERNAME: 'your-username' # Hashnode Username
+          BLOG_URL: 'your-blog-url' # Blog URL
           COUNT: 10 # MAX Visisble
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
