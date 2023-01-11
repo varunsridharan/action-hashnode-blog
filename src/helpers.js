@@ -13,7 +13,7 @@ module.exports = {
 	a: atag,
 	img: imgtag,
 	post_link: function( post, username, BLOG_URL = false ) {
-		return ( '' !== BLOG_URL ) ? `${BLOG_URL}/${post.slug}` : `https://${username}.hashnode.dev/${post.slug}-${post.cuid}`;
+		return ( '' !== BLOG_URL ) ? `${BLOG_URL}/${post.slug}?ref=github` : `https://${username}.hashnode.dev/${post.slug}-${post.cuid}?ref=github`;
 	},
 	image_size: function( user_value, _default, small, large ) {
 		if( 'small' === user_value ) {
