@@ -20,6 +20,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Security
 
 -->
+## 1.2 - 10/05/2023
+## Changed
+* Updated Action Runner NodeJS Version
 
 ## 1.1.1 - 12/11/2020
 ## Fixed
